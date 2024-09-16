@@ -1,0 +1,71 @@
+/******************************************************************************
+                                    Practica 1
+
+Dado un arreglo (numeros) ordenado de forma ascendente, se remueven los duplicados
+en el sitio (sin otro arreglo auxiliar, en este caso usando apuntadores) de forma
+que tal elemento único aparezca sólo una vez.
+
+* Cambia el arreglo nums de tal forma que los primeros k elementos de nums tengan 
+  los valores únicos, preservando el orden en el que fueron presentados inicialmente. 
+* Los elementos restantes de nums no importan. 
+* Regresar el valor de k. 
+
+Indica la complejidad del algoritmo que diseñaste.
+
+El bucle for en la función numscambiado recorre el arreglo una vez, comparando 
+cada elemento con el siguiente. Esto implica que la complejidad temporal es O(n),
+donde n es el número de elementos en el arreglo.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void numscambiado(int numeros[], int *k) {
+    
+    int j=0;
+
+    // Verificamos el arreglo original y dejamos las copias unicas
+    for (int i=0; i<*k-1; i++) {
+        if (numeros[i]!=numeros[i+1]) {
+            numeros[j++]=numeros[i];
+        }
+    }
+    numeros[j++]=numeros[*k-1];
+    *k=j;
+}
+
+int main() {
+    
+    /*int numeros[10] = {0,0,1,1,1,2,2,3,3,4};
+    int numeros[2] = {1,1,2};
+    int numeros[9] = {1,1,2,2,3,3,4,5,5};*/
+    
+    int k;
+    int *numeros;
+
+    printf("Datos para el arreglo: \nTamaño: ");
+        scanf("%d", &k);
+        numeros=(int *)malloc(k * sizeof(int));
+    
+    printf("Llenado: \n"); 
+        for (int i=0; i<k; i++) {
+            scanf("%d", &numeros[i]);
+        }
+    
+    printf("\n\nArreglo: ");
+        for (int i=0; i<k; i++) {
+            printf("%d ", numeros[i]);
+        }
+
+    numscambiado(numeros, &k);
+    
+    printf("\nnums: ");
+    for (int i=0; i<k; i++) {
+        printf("%d ", numeros[i]);
+    }
+    
+    printf("\nk: %d", k);
+
+    return 0;
+}
