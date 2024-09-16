@@ -2,7 +2,7 @@
                                     Practica 1
 
 Dado un arreglo (numeros) ordenado de forma ascendente, se remueven los duplicados
-en el sitio (sin otro arreglo auxiliar, en este caso usando apuntadores) de forma
+en el sitio sin de otro arreglo, en este caso se utilizan apuntadores, de forma
 que tal elemento único aparezca sólo una vez.
 
 * Cambia el arreglo nums de tal forma que los primeros k elementos de nums tengan 
@@ -15,6 +15,17 @@ Indica la complejidad del algoritmo que diseñaste.
 El bucle for en la función numscambiado recorre el arreglo una vez, comparando 
 cada elemento con el siguiente. Esto implica que la complejidad temporal es O(n),
 donde n es el número de elementos en el arreglo.
+
+                        Resumen del programa realizado
+                            
+En este caso el programa pide al usuario el tamaño del arreglo y su llenado, con la
+restricción de que este ordenado de manera ascendente, si el usuario intenta colocar 
+un numero menor al anterior, el programa dara el mensaje que le pida al usuario otro 
+numero, reemplazando al incorrecto.
+Una vez que el arreglo estte lleno se procedera a comparar cada posicion con su 
+siguiente inmediato, al estar llenado de forma ascendente, solo es necesario verificar
+sus copias y quitarlas, así solo quedara una unica copia del elemento, guardandola en 
+el mismo arreglo pero recorriendolos. 
 
 *******************************************************************************/
 
@@ -44,13 +55,18 @@ int main() {
     int k;
     int *numeros;
 
-    printf("Datos para el arreglo: \nTamaño: ");
+    printf("Datos para el arreglo ordenado ascendentemente: \nTamaño: ");
         scanf("%d", &k);
         numeros=(int *)malloc(k * sizeof(int));
     
     printf("Llenado: \n"); 
         for (int i=0; i<k; i++) {
             scanf("%d", &numeros[i]);
+            
+            if (i!=0 && numeros[i]<numeros[i-1]){
+                printf("\tNo esta ordenado de manera ascendente. Coloca otro numero:\n");
+                i--;
+            }
         }
     
     printf("\n\nArreglo: ");
